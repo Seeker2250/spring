@@ -28,7 +28,7 @@ public class TimeMybatisController {
 	private static final Logger logger = LoggerFactory.getLogger(TimeMybatisController.class);
 
 	//@RequestMapping(value = "/time", method = RequestMethod.GET)
-	@GetMapping(value = "/time")
+	@GetMapping(value = "/time")//control method? controller method?
 	public String time(Locale locale, Model model, HttpServletRequest request) {
 		logger.info("TimeMybatisController.time()호출했당~~", locale);
 		

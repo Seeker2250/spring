@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="org.doit.ik.mapper.scott.EmpMapper"><!-- 패키지들이랑 interface 이름 -->
+	<select id="selectEmp" resultType="org.doit.ik.domain.EmpDTO"><!-- ArrayList 안에 들어가는 값 -->
+	<!-- 타입 org.doit.ik.domain.DeptDTO;라고 주어야 하는데 mybatis config에서 typeAlias type으로 한 번에 처리 가능 -->
+		SELECT *
+		FROM emp
+		<where>
+			<foreach collection="array" item="deptno" open="deptno IN(" close=")" separator=","><!-- deptnos가 int[]니까 이름 array로 준 거-->
+				#{deptno}
+			</foreach>
+		</where>
+		ORDER BY deptno
+		<!-- WHERE deptno IN(10, 20, 30) -->
+	</select>
+</mapper>
