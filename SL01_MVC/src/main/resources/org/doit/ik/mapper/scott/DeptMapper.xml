@@ -3,21 +3,30 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="org.doit.ik.mapper.scott.DeptMapper"><!-- 패키지들이랑 interface 이름 -->
-	<select id="selectDept" resultType="org.doit.ik.domain.DeptDTO"><!-- ArrayList 안에 들어가는 값 -->
+<mapper namespace="org.doit.ik.mapper.scott.DeptMapper"><!-- 패키지들이랑 interface 경로 -->
+	<select id="selectDept" resultType="org.doit.ik.domain.DeptDTO"><!-- 출력 데이터 명시, ArrayList 안에 들어가는 값 -->
 	<!-- 타입 org.doit.ik.domain.DeptDTO;라고 주어야 하는데 mybatis config에서 typeAlias type으로 한 번에 처리 가능 -->
 		SELECT d.deptno, dname, loc, COUNT(e.empno) numberOfEmps
 		FROM dept d FULL JOIN emp e ON d.deptno = e.deptno
 		GROUP BY d.deptno, dname, loc
 		ORDER BY d.deptno
 	</select>
-	<insert id="insertDept" parameterType="org.doit.ik.mapper.scott.DeptMapper"><!-- parameter type 생략해도 돼 -->
+	<insert id="insertDept" parameterType="org.doit.ik.mapper.scott.DeptMapper"><!--입력 데이터 명시, parameter type 생략해도 돼 -->
 		INSERT INTO dept(deptno, dname, loc)
-		VALUES(#{deptno}, #{dname}, #{loc})
+		VALUES(#{deptno}, #{dname}, #{loc})<!-- getter setter 없으면 이거 못 불러와 내부적으로는 getter로 가져오는거야 -->
 	</insert>
-	<delete id="removeDept" parameterType="org.doit.ik.mapper.scott.DeptMapper">
+	
+	<delete id="deleteDept" parameterType="int">
+		DELETE
+		FROM dept
+		WHERE deptno = #{deptno}	
+	</delete>
+	
+	
+	<!--내가 만든 쿼리 
+	<delete id="removeDept">
 		DELETE
 		FROM dept
 		WHERE deptno = #{deptno}
-	</delete>
+	</delete> -->
 </mapper>

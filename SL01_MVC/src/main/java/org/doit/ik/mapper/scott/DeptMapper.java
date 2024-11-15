@@ -7,5 +7,6 @@ import org.doit.ik.domain.DeptDTO;
 public interface DeptMapper {
 	ArrayList<DeptDTO> selectDept();
 	int insertDept(DeptDTO dto);
-	int removeDept(DeptDTO dto);
+//	int removeDept(DeptDTO dto);
+	int deleteDept(int deptno);
 }

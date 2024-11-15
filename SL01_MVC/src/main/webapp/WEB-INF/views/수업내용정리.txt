@@ -7,7 +7,7 @@
    Controller 이름은 ScottController로 주자				  완료OK
    
    
-   dept라는 이름의 control method를 만들어
+   dept라는 이름의 controller method를 만들어
    dept(){
    }
    

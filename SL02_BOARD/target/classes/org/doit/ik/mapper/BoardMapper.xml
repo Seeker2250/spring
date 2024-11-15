@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="org.doit.ik.mapper.BoardMapper"><!-- 패키지들이랑 interface 이름 -->
+	<!-- List<BoardVO>getList();와 mapping되어야 해-->
+	<select id="getList" resultType="org.doit.ik.domain.BoardVO">
+	<!-- 이거 넣는 이유는 xml parse할 때 주석 처리해서 query가 제대로 날아가게 하기 위한 것  -->
+		<![CDATA[
+		SELECT *
+		FROM tbl_board
+		WHERE bno > 0
+		ORDER BY bno DESC
+		]]>
+	</select>
+	<!-- void insert(BoardVO board); 새 글 쓰기 -->
+	<insert id="insert" parameterType="org.doit.ik.domain.BoardVO">
+		<![CDATA[
+		 INSERT INTO tbl_board (bno, title, content, writer)
+     	 VALUES ( seq_board.nextval,  #{title}, #{content}, #{writer} )
+		]]>
+	</insert>
+	
+	<!-- void insertSelectKey(BoardVO board); //새 글 쓰기+글 번호pk 반환 -->
+	<insert id="insertSelectKey" parameterType="org.doit.ik.domain.BoardVO">
+		<selectKey order="BEFORE" resultType="long" keyProperty="bno"><!-- BEFORE는 selectKey 먼저, AFTER는 INSERT 먼저 -->
+			SELECT seq_board.nextval
+			FROM dual
+		</selectKey>
+		<![CDATA[
+		 INSERT INTO tbl_board (bno, title, content, writer)
+     	 VALUES ( #{bno} , #{title}, #{content}, #{writer} )
+		]]>
+	</insert>
+	
+	
+	<!-- BoardVO read(Long bno); -->
+	<select id="read" resultType="org.doit.ik.domain.BoardVO">
+		SELECT *
+		FROM tbl_board
+		WHERE bno = #{bno}
+	
+	</select>
+	
+	<!-- int update(BoardVO board); -->
+	<update id="update">
+	 UPDATE tbl_board
+	 SET title=#{title}, content=#{content}, writer=#{writer}, updatedate=SYSDATE 
+	 WHERE bno = #{bno}
+	</update>
+	<delete id="remove">
+	DELETE
+	FROM tbl_board
+	WHERE bno = #{bno}
+	</delete>
+</mapper>

@@ -1,0 +1,85 @@
+N-Tier
+3 Tier Architecture
+persistence - presentation
+business logic (business tier)
+database (persistence tier)
+
+Spring MVC
+
+package 이름 명명
+org.doit.ik이 지금 여기에선 top level package
+ 	ㄴ 프젝 관련 설정 파일 config
+ 	만든 거(org.doit.ik)ㄴ 컨트롤러 controller
+ 	만든 거 ㄴ 서비스 service
+ 	만든 거 ㄴ 도메인 VO, DTO 객체(VO, value object는 객체 정보를 저장하여 읽기만 하는 용도, DTO는 전달, 수정 등 다목적)
+ 	만든 거(mapper)ㄴ persistence DAO, MyBatis
+ 	ㄴ exception 예외처리
+ 	ㄴ aop 스프링 AOP
+ 	ㄴ security 스프링 보안(AAA)
+ 	ㄴ util 각종 유용한 유틸리티
+ 	ㄴ 모델 model
+ 	ㄴ 뷰 views
+ 	
+ 	
+         CREATE TABLE tbl_board
+    (
+        bno number(10)
+      , title varchar2(200) not null
+      , content varchar2(2000) not null
+      , writer varchar2(50) not null
+      , regdate date default sysdate
+      , updatedate date default sysdate
+    );
+    
+    alter table tbl_board add constraint pk_tblboard_bno primary key(bno);
+    
+     CREATE SEQUENCE seq_board;  
+     
+스토리보드
+ppt, pencil mockup,
+1) domain
+		ㄴ BoardVO.java
+2) 게시판 목록 조회 구현
+	mapper
+		ㄴ BoardMapper.java interface
+		ㄴ BoardMapper.xml mapper파일
+		
+3) home.jsp 메인 페이지
+<a href="/board/list">/board/list</a>
+4) BoardController
+	list controller method 구현
+5) views
+	ㄴboard
+		ㄴlist.jsp
+6. service
+	ㄴBoardService.java interface
+	ㄴBoardServiceImpl.java (interface implement 하는 class)
+	
+	이거 만들고 root-context의 beans graph에서 객체 생성됐는지 확인해
+	안되어있으면 impl에서 @Service Annotation 줘
+	Spring bean 자바 객체 생성하려면 이 component 생성하세요 라고 표시를 해야 생성해
+	그 표시가 root-context에서 
+	   <context:component-scan base-package="org.doit.ik"></context:component-scan>
+	   덕에 org.doit.ik 안에 있는 모든 곳 다 뒤져서 생성
+	   이때 component의 기준은 component annotation의 자식 annotation!(controller, service 등)
+
+7. controller에서 service 주입 받아오면 돼
+
+8. <a href="/board/register"> 글쓰기</a>	  
+	이 요청이 일어날 때 jsp에선 get방식으로 버튼 누르면 handler 호출, if로 get post 나누고 post는 입력값 갖고 목록으로 뿌리고 get은 보여줬어
+
+web.xml에
+<filter>
+      <filter-name>encoding</filter-name>
+      <filter-class>org.springframework.web.filter.CharacterEncodingFilter
+      </filter-class>
+      <init-param>
+         <param-name>encoding</param-name>
+         <param-value>UTF-8</param-value>
+      </init-param>
+   </filter>
+   <filter-mapping>
+      <filter-name>encoding</filter-name>
+      <servlet-name>appServlet</servlet-name>
+      <url-pattern>/*</url-pattern>
+   </filter-mapping>하면 한글 안깨져	 

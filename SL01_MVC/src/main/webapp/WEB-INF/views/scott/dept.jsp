@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="shortcut icon" type="image/x-icon" href="images/SiSt.ico">
+<link rel="shortcut icon" type="image/x-icon" href="/resources/images/SiSt.ico">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="/resources/cdn-main/example.css">
@@ -223,9 +223,22 @@
 	                       <td align="center"><span class="material-symbols-outlined delete" data-deptno="\${ deptno }">close</span></td>
 	                     </tr>
 	                      `);
-				$(tr).appendTo($("table tbody"));
+				$(tr).appendTo($("table tbody"))
+				.find("span.delete")
+					.on("click", function(){
+						//alert("클릭한 부서 삭제!!")
+						if (   confirm("정말 삭제할까요?")  ) {
+                            // data-deptno="50"
+                              let deptno = $(this).data("deptno");
+                         	   var spanDelete = $(this);
+                          		deptService.remove(deptno, function (result){
+                           		if(result === 'SUCCESS')
+                              		spanDelete.parents("tr").remove();
+                            	});
+                         	} // if
+						});
 					
-			}//if
+				}//if
 			alert(result);
 		});
 	  });//deptService.add 끝
@@ -236,7 +249,7 @@
 						alert("클릭한 부서 삭제~!")
 					}); */
 	  
-	  $("#tbl-dept > tbody > tr > td:nth-child(5) > span").on("click", function(){
+	  /*$("#tbl-dept > tbody > tr > td:nth-child(5) > span").on("click", function(){
 		  
 	        const deptno = $(this).data("deptno");
 	        const $aaa = $(this);
@@ -246,7 +259,20 @@
 	                $aaa.closest("tr").remove();
 	            }
 	        });
-	    });
+	    });*///remove 내가 만든 거
+	    $("#tbl-dept > tbody > tr > td > span").on("click", function (event){
+	        if (   confirm("정말 삭제할까요?")  ) {
+	           // data-deptno="50"
+	           let deptno = $(this).data("deptno");
+	           
+	           deptService.remove(deptno, function (result){
+	              if(result === 'SUCCESS')
+	                 $( event.currentTarget ).parents("tr").remove();
+	           });
+	           
+	        } // if
+	     });
+
 					
 	  // 부서 체크
 	  $("#search").on("click", function(e){
