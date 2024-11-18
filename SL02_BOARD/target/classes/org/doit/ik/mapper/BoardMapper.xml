@@ -40,7 +40,6 @@
 		SELECT *
 		FROM tbl_board
 		WHERE bno = #{bno}
-	
 	</select>
 	
 	<!-- int update(BoardVO board); -->

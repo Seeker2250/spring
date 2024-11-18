@@ -1,0 +1,46 @@
+요청 URL 사용 목적
+
+<select id="getListWithPaging" resultType="org.doit.ik.domain.BoardVO">
+     <![CDATA[
+     SELECT bno, title, content, writer, regdate, updatedate
+     FROM (
+            SELECT /*+INDEX_DESC(tbl_board pk_tblboard_bno )*/
+                   rownum rn, bno, title, content, writer, regdate, updatedate
+            FROM tbl_board
+            WHERE
+     ]]>
+     
+     		<!-- (동적 SQL) AND -->
+     		\
+    <![CDATA[
+             rownum <= #{pageNum} * #{amount}
+           	)
+    		WHERE rn > (#{pageNum} - 1) * #{amount}
+     ]]>
+     <!--  <where>
+        <foreach item="type" collection="typeArr">
+            <if test="type == 'T'.toString()">
+                OR title LIKE '%'||#{keyword}||'%'
+            </if>
+            <if test="type == 'C'.toString()">
+                OR content LIKE '%'||#{keyword}||'%'
+            </if>
+            <if test="type == 'W'.toString()">
+                OR writer LIKE '%'||#{keyword}||'%'
+            </if>	
+        </foreach>
+    </where> -->
+   </select>
+   
+   
+   <!-- int getTotalCount(Criteria criteria);//총 레코드 수 반환 -->
+   <select id="getTotalCount" resultType="int">
+   	<![CDATA[
+   		SELECT COUNT(*)
+   		FROM tbl_board
+     ]]>
+     		
+     <![CDATA[
+   		WHERE bno > 0
+   	 ]]>
+   </select>
