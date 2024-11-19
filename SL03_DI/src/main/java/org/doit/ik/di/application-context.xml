@@ -16,7 +16,9 @@
       
       <!--1) rvi.setRecord(record)  -->
       <!-- <property name="record" ref="record"></property> -->
-      <!-- name의 record는 setRecord고 ref의 record는 위의 bean객체 record -->
+      
+      <!-- name의 record는 setRecord고 ref의 record는 위의 bean객체 record 
+      	   Setter 없으면 이거 오류 나-->
       <property name="record">
       	<ref bean="record"/>
       </property>

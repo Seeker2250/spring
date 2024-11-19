@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+      
+      <context:annotation-config/>
+      <!-- <context:annotation-config/> 하나로 여러 전처리기를 등록해줘(@Autowired, @Resource, @PostConstruct, @Qualifier 등 처리)  -->
+      <!-- @Configuration을 이용한 java 기반 설정을 사용하면 추가 설정 안해도 Annotation 알아서 처리해줌 -->
+      <!-- pdf 106 확인 -->
+      
+      
+   	 <bean id="record1" class="org.doit.ik.di3.RecordImpl3" >
+     
+      <!-- id값 안주면 첫 글자가 소문자인 class명이 id값이 된다
+      	   여기에선 recordImpl3이 되는거야 근데 id값 줬으니까 뭐~ -->
+      </bean>
+      <bean id="record2" class="org.doit.ik.di3.RecordImpl3" ></bean>
+      
+      <bean id="rvi" class="org.doit.ik.di3.RecordViewImpl3" ></bean>
+      <!-- 자동으로 의존성 주입할 거니까 property, constructor-arg 같은 태그 필요없다. -->
+      
+</beans>

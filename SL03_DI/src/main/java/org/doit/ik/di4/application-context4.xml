@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+      
+      <!-- <context:annotation-config/> -->
+      <!-- <context:annotation-config/> 하나로 여러 전처리기를 등록해줘(@Autowired, @Resource, @PostConstruct, @Qualifier 등 처리)  -->
+      <!-- @Configuration을 이용한 java 기반 설정을 사용하면 추가 설정 안해도 Annotation 알아서 처리해줌 -->
+      <!-- pdf 106 확인 -->
+      
+      <context:component-scan base-package="org.doit.ik.di4"></context:component-scan>
+      <!-- context:component-scan 하나로 여러 전처리기를 등록해줘 context:annotation-config 상위호환으로 @Component annotaion까지 -->
+      <!-- pdf 119 확인 -->
+      
+</beans>
