@@ -1,0 +1,9 @@
+[수업 내용 정리]
+
+1. SL06_NLMVC->SL06_NLMVC2
+2. 문제점
+	1) 공지사항 목록 : notice.htm 요청 -> NoticeController Mapping
+	2) 공지사항 상세보기 : noticeDetail.htm요청 -> NoticeDetailController Mapping
+	3) 공지사항(Notice)와 관련된 Mapping은 하나의 Controller를 생성해서 이 안에서 각각 기능은 Controller method와 Mapping
+	
+	4) servlet-context.xml의 <bean>객체로 Dependency Injection(constructor-arg tag) 하던 걸 Annotation으로 생성 및 injection!

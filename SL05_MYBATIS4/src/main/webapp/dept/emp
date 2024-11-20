@@ -1,0 +1,8 @@
+/dept/emp 요청 URL 쓰려고 이렇게 만듦
+
+mapper xml에서
+<resultMap> element
+<association> element
+<collection> element
+
+SpringBoot 연관 관계 이해에 도움
