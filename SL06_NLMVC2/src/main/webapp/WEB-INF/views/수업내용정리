@@ -1,5 +1,5 @@
 [수업 내용 정리]
-
+11/20
 1. SL06_NLMVC->SL06_NLMVC2
 2. 문제점
 	1) 공지사항 목록 : notice.htm 요청 -> NoticeController Mapping
@@ -7,3 +7,20 @@
 	3) 공지사항(Notice)와 관련된 Mapping은 하나의 Controller를 생성해서 이 안에서 각각 기능은 Controller method와 Mapping
 	
 	4) servlet-context.xml의 <bean>객체로 Dependency Injection(constructor-arg tag) 하던 걸 Annotation으로 생성 및 injection!
+	
+11/21
+공지사항 글쓰기
+<a class="btn-write button" href="noticeReg.htm">글쓰기</a>
+에 대해 Controller method 추가해서 noticeReg.htm으로 forwarding
+
+<input type="hidden" name="${ _csrf.parameterName }" value="${ _csrf.token }">
+위 코딩으로 csrf 토큰 주고
+
+<c:out value="${notice.content}"></c:out>로 html 태그도 text로 출력되게
+
+공지사항 글 수정
+<a class="btn-edit button" href="noticeEdit.htm?seq=${notice.seq}">수정</a> 이 anchor 누르면
+controller method 추가해서 noticeDetail.htm으로 forwarding
+
+삭제도 대충 비슷하게 완료
+440p파일 업로드 설정 

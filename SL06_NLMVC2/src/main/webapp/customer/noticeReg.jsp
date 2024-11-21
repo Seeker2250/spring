@@ -38,13 +38,13 @@
 				<h3 class="hidden">로그인메뉴</h3>
 				<ul id="loginmenu" class="block_hlist">
 					<li>
-						<a href="../index.jsp">HOME</a>
+						<a href="../index.htm">HOME</a>
 					</li>
 					<li>
-						<a href="../joinus/login.jsp">로그인</a>
+						<a href="../joinus/login.htm">로그인</a>
 					</li>
 					<li>
-						<a href="../joinus/join.jsp">회원가입</a>
+						<a href="../joinus/join.htm">회원가입</a>
 					</li>
 				</ul>
 				<h3 class="hidden">회원메뉴</h3>
@@ -53,7 +53,7 @@
 						<a href=""><img src="../images/menuMyPage.png" alt="마이페이지" /></a>
 					</li>
 					<li>
-						<a href="notice.jsp"><img src="../images/menuCustomer.png" alt="고객센터" /></a>
+						<a href="notice.htm"><img src="../images/menuCustomer.png" alt="고객센터" /></a>
 					</li>
 				</ul>
 			</div>
@@ -104,8 +104,9 @@
 						</div>
 						<p class="article-comment margin-small">						
 							<input class="btn-save button" type="submit" value="저장" />
-							<a class="btn-cancel button" href="notice.jsp">취소</a>						
+							<a class="btn-cancel button" href="notice.htm">취소</a>						
 						</p>
+						<input type="hidden" name="${ _csrf.parameterName }" value="${ _csrf.token }">
 					</form>							
 				</div>				
 				<div id="navi">

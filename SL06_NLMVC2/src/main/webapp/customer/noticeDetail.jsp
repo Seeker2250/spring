@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -8,6 +9,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 		<title>index</title>
 		<link href="../css/customer.css" type="text/css" rel="stylesheet" />
+		<script src="https://code.jquery.com/jquery-3.7.1.slim.js" integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc=" crossorigin="anonymous"></script>
 	</head>
 	<body>
 		<div id="header">
@@ -121,12 +123,13 @@
 							</dd>
 						</dl>
 
-						<div class="article-content" >${notice.content}</div>
+						<div class="article-content" ><c:out value="${notice.content}"></c:out></div>
+						<!-- 위 c:out을 쓰는 이유는 html 태그들이 content에 들어와도 진짜 text로 출력하려고 -->
 					</div>
 					<p class="article-comment margin-small">
 						<a class="btn-list button" href="notice.htm">목록</a>						
-						<a class="btn-edit button" href="noticeEdit.htm">수정</a>
-						<a class="btn-del button" href="noticeDel.htm">삭제</a>
+						<a class="btn-edit button" href="noticeEdit.htm?seq=${notice.seq}">수정</a>
+						<a class="btn-del button" href="noticeDel.htm?seq=${notice.seq}">삭제</a>
 					</p>
 					<div class="margin-small" style="border-top: 1px solid #dfdfdf;">
 						<dl class="article-detail-row">
@@ -197,5 +200,14 @@
 			    </p>
 			</div>
 		</div>
+	 <script>
+		 //<a class="btn-del button" href="noticeDel.htm?seq=${notice.seq}">삭제</a>
+      $(".btn-del").on("click", function(e){
+         e.preventDefault();
+         if( confirm("진짜 삭제해??") ) {
+        	 location.href = $(this).attr("href");
+         }//if
+      })//click
+   </script>
 	</body>
 </html>
