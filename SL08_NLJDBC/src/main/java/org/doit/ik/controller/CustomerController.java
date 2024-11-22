@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
 // 공지사항과 관련된 모든 컨트롤러 메서드를 만드는 컨트롤러
 @Controller
@@ -181,7 +180,7 @@ public class CustomerController {
          notice.setFilesrc(filesystemName); // 디비에 반영
       } // if
       
-      notice.setWriter("lsh");
+      notice.setWriter("seeker");
       // 2.
       int rowCount = this.noticeDao.insert(notice);
       if (rowCount == 1) {

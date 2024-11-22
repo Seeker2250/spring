@@ -1,0 +1,28 @@
+[수업 내용 정리]
+
+p575 Spring Transaction
+
+SL09_NLTRANSACTION4_PROPAGATITON p513
+
+트랜잭션 전파 p513
+
+트랜잭션 처리를 현재 진행중에 또다른 트랜잭션 처리를 해야할 경우에
+어떻게 트랜잭션 처리를 해야할 지 결정하는 속성
+
+-[												]A 트랜잭션
+			[		]B트랜잭션		[	]C트랜잭션
+
+REQUIRES_NEW라면 B와 C는 따로따로
+
+중요****
+NoticeDaoImpl
+	ㄴinsertAndPointUpOfMember() 트랜잭션 안걸기
+	ㄴinsert()트랜잭션	point 1인 상태에서 이건 되는데	
+	ㄴinsert()트랜잭션	여기에서 오류 생겨야해
+	
+근데 글이 들어가는 이유
+동일한 NOticeDaoImpl class 내에 있는 insertAndPointUpOfMember()에서 insert()를 호출하면
+이 호출 구조로는 AOP 방식으로 transaction 처리가 되지 않아.
+
+해결 : class를 나눠서 method 구현
+NoticeDaoImpl.insertAndPointUpOfMember()를 다른 class로 만들어서 분리

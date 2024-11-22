@@ -1,9 +1,15 @@
 [수업 내용 정리]
-pdf 
-chapter 11 스프링 JDBC
-chapter 12 스프링 트랜잭션****
-확인 
 
-여유되면 Spring Tiles
-MyBatis 연동
-Spring Security
+SL08_NLJDBC2
+
+NamedParameterJdbcTemplate
+바인딩 변수(인덱스 기반 파라미터) 대신 이름 지어주고 그거 사용하기
+
+NoticeDao.java class -> interface
+NoticeDaoImpl class로 implements
+
+공지사항 관리하는 CustomerController만 있으니
+JoinController 구현 예정
+HomeController 수정
+
+ 

@@ -104,7 +104,7 @@
 		<item value="org.springsource.sts:3.9.18.202109140905-RELEASE"/>
 	</list>
 	<section name="org.eclipse.text.quicksearch.internal.ui.QuickSearchDialog.DIALOG_SETTINGS">
-		<item key="LAST_QUERY" value="genericxml"/>
+		<item key="LAST_QUERY" value="componen"/>
 		<item key="PATH_FILTER" value=""/>
 		<item key="CASE_SENSITIVE" value="true"/>
 		<item key="KEEP_OPEN" value="false"/>

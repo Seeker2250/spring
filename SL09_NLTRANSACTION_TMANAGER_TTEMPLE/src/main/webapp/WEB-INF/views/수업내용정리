@@ -1,0 +1,21 @@
+[수업 내용 정리]
+
+p505 Spring Transaction
+
+SL09_NLTRANSACTION_TMANAGER_TTEMPLE
+
+트랜잭션 필요한 부분 억지로 만들거야
+공지사항 새 글 작성 (insert)
+작성자 포인트 1증가(update)
+	 이대로만 두면 오류가 거의 안 일어날테니 오류 확인용으로
+	 포인트 3보다 크면 오류 발생 시키도록 제약조건 걸어두기
+
+
+ALTER TABLE MEMBER
+ADD(POINT NUMBER(10) DEFAULT(0));
+
+ALTER TABLE NOTICES
+    ADD CONSTRAINT ck_notices_title UNIQUE(title);
+
+ALTER TABLE MEMBER
+    ADD CONSTRAINT ck_notices_point CHECK (point < 3);

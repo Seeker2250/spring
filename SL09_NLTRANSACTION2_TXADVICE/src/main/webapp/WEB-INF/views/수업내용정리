@@ -1,0 +1,12 @@
+[수업 내용 정리]
+
+p575 Spring Transaction
+
+SL09_NLTRANSACTION2_TXADVICE p524
+
+선언적 트랜잭션 처리
+1)xml 설정 파일
+	<tx:advice> 태그 설정
+	SL09_NLTRANSACTION2_TXADVICE p524
+	
+2) @Transactional annotation 사용해서 처리

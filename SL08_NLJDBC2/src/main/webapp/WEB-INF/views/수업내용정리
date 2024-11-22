@@ -1,0 +1,29 @@
+[수업 내용 정리]
+
+SL08_NLJDBC
+
+chapter 11 스프링 JDBC
+chapter 12 스프링 트랜잭션****
+확인 
+
+여유되면 Spring Tiles
+MyBatis 연동
+Spring Security
+
+query():레코드 여러 개 가져올 때
+queryForList():컬럼 하나 가져올 때
+queryForObject:()레코드 하나 가져올 때
+update() : insert, update, delete
+
+조회
+query();
+RowMapper로 ? 대체
+
+queryForList();
+column 한 개 읽어올 때 사용
+
+queryForObject()
+구해와야 하는 게 딱 행 하나라면 사용
+
+update()
+insert update delete라면 사용
