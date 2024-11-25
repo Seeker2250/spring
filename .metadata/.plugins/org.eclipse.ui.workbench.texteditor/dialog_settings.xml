@@ -1,31 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="INSERT"/>
+		<item key="selection" value="getCount"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="insert"/>
-			<item value="reg"/>
-			<item value="i"/>
-			<item value="insertA"/>
-			<item value="3"/>
-			<item value="excute"/>
-			<item value="defi"/>
-			<item value="join"/>
-			<item value="noticeReg"/>
-			<item value="form"/>
-			<item value="Birth"/>
-			<item value="Birth\"/>
-			<item value="id"/>
-			<item value="&lt;/form"/>
-			<item value="?"/>
+			<item value="getCount"/>
+			<item value="get"/>
+			<item value=";"/>
+			<item value="impl"/>
+			<item value="IMPL"/>
+			<item value="DAO"/>
+			<item value=":"/>
+			<item value=".jsp"/>
+			<item value="tiles"/>
+			<item value="header"/>
+			<item value="부분"/>
+			<item value="resol"/>
+			<item value="noticeDetail"/>
+			<item value="notice"/>
+			<item value="detail"/>
 		</list>
 		<list key="replacehistory">
+			<item value="#{"/>
 			<item value=".htm"/>
+			<item value=""/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

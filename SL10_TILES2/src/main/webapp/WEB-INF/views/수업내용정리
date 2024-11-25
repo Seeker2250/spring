@@ -1,0 +1,49 @@
+[수업 내용 정리]
+
+p505 Spring Transaction
+
+SL10_TILES2
+
+webapp
+	ㄴinc
+	  ㄴ footer.jsp
+	  ㄴ header.jsp
+	  ㄴ layout.jsp
+	ㄴcustomer
+		ㄴinc
+			ㄴ aside.jsp
+			ㄴ visual.jsp
+			ㄴ layout.jsp
+		ㄴjoinus
+			ㄴ inc
+				ㄴ aside.jsp
+				ㄴ visual.jsp
+				ㄴ layout.jsp
+				
+모든 jsp 페이지를 외부에서 바로 접근하지 못하도록
+	/WEB-INF/views 
+				jsp 들어있는 폴더들(customer, inc. joinus, mypage) 여기로 이동
+				jsp만 냅두고 다 지워			
+				views 위에는 jsp만 다 지워
+
+
+
+tile를 이용한 유동적인 url 전달
+<definition name="*.*" template="/WEB-INF/views/{1}/inc/layout.jsp">
+  <put-attribute name="header" value="/WEB-INF/views/inc/header.jsp" />
+  <put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" />
+  <put-attribute name="visual" value="/WEB-INF/views/{1}/inc/visual.jsp" />
+  <put-attribute name="aside"  value="/WEB-INF/views/{1}/inc/aside.jsp" />
+  <put-attribute name="content"  value="/WEB-INF/views/{1}/{2}.jsp" />
+  
+  <put-attribute name="css" value="{2}.css"/>
+</definition>
+
+<link href='<tiles:getAsString name="css"/>' type="text/css" rel="stylesheet" />
+
+
+
+tiles 쓸 땐 모든 경로를 절대 경로로 주어야  한다
+${pageContext.request.contextPath}/
+
+Spring Security 11/26에~

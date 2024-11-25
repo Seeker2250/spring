@@ -1,0 +1,32 @@
+[수업 내용 정리]
+
+1. 스프링 + tiles
+	ㄴ 페이지 모듈화(집중화)
+	ㄴ 공통적인 부분 (헤더, 푸터, 사이드 메뉴 등)
+	
+2. resources/w3ss/css/flextbox.css
+		
+3. tiles 쓸 거니까 pom.xml에 dependency 추가
+4. 마찬가지로 servlet-context.xml에도 기존 jsp view resolver 주석 처리, tiles 등록
+		   Controller 세팅
+5. /WEB-INF/tiles/tiles.xml 추가
+		
+6. 페이지 모듈화
+  views/layout
+        ㄴ header.jsp   ***
+        ㄴ footer.jsp   ***
+        ㄴ template.jsp ***
+        
+  views/city
+        ㄴ london.jsp  ***
+        ㄴ paris.jsp
+        ㄴ seoul.jsp
+        ㄴ layout 폴더 추가
+           ㄴ nav.jsp  ***
+           ㄴ template.jsp ***
+           
+           
+           
+city/template 최상단에<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %> 추가
+<tiles:insertAttribute name="header" /> 이거 named은 tiles.jsp에서 준 name
+

@@ -26,3 +26,6 @@ NoticeDaoImpl
 
 해결 : class를 나눠서 method 구현
 NoticeDaoImpl.insertAndPointUpOfMember()를 다른 class로 만들어서 분리
+
+Spring Tiles
+MyBatis

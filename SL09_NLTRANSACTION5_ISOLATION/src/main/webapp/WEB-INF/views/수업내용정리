@@ -1,0 +1,86 @@
+[수업 내용 정리]
+
+p505 Spring Transaction
+
+SL09_NLTRANSACTION5_ISOLATION
+
+[격리 레벨(격리성, 격리 수준)]
+트랜잭션 처리 과정에서
+두 개 이상의 트랜잭션이 서로 동시에 같은 자원을 접근할 때의 문제점
+접근할 때 어떻게 각각의 트랜잭션을 처리해야 하는가?
+
+공유자원 == 같은 자원
+
+A [화장실]
+B [화장실]
+동기화처리(비동기의 반대니까 순서대로 사용)
+
+실습
+NoticeDao interface
+	 ㄴ hitUp() 조회수 증가 method
+	 public void hitUp(String seq) throws ClassNotFoundException, SQLException ;
+	    
+   	 ㄴ getHit() 조회수 얻어오는 method
+	 public int getHit(String seq) throws ClassNotFoundException, SQLException ;
+	 
+	 @Transactional(isolation = Isolation.DEFAULT)//내가 사용하는 DBMS에서 지원하는 기본 격리 수준에 따른다.
+	 
+ 용어 이해(pdf514 참고)
+ 	
+ 1) Dirty Read 상황
+ 
+ @Transactional 걸린 hitUp(){
+ 		seq=16일 때 조회수가 10인데	
+ 		해야할 일들 여기 있음
+ 		조회수 11로 1 증가
+ 		
+ 		@Transactional getHit()로 조회수 읽어오기
+ 		seq16에 조회수 값을 읽어와야 해
+ 		
+ 		커밋/롤백 처리
+ 	}
+ 	이런 상황에서는 Rollback을 해버렸다고 하면 10인데 11값을 가져가버려
+ 	
+ 2) Non-repeatable Read 상황
+ 		조건 : 반드시 반복적으로 읽을 때
+ 		@Transactional
+ 		getHit();
+ 		seq = 16인 게시글의 조회수가 10
+ 		
+ 		@Transactional
+ 		hitUp();
+ 		seq = 16인 게시글 조회수가 11
+ 		
+ 		@Transactional
+ 		getHit();
+ 		seq=16인 게시글 조회수 11로 읽어야 해
+ 
+ 	이렇게 2번 이상 읽는데 결과값이 다른 경우
+ 	
+ 3)  	Phantom Read 상황
+ 	조건 : 여러 개의 레코드를 한 번에 읽어오는 작업을 반복
+ 	SELECT *
+ 	FROM emp
+ 	WHERE deptno = 30; //사원 6명
+ 	
+ 	[사원 정보]
+ 	[사원 정보]
+ 	[사원 정보]
+ 	[사원 정보]
+ 	[사원 정보]
+ 	[사원 정보]
+ 	
+ 	@Transactional
+ 	DELETE emp 30번 부서 1명 삭제
+ 	
+ 	SELECT *
+ 	FROM emp
+ 	WHERE deptno = 30; //사원 5명
+ 	
+ 	[사원 정보]
+ 	[사원 정보]
+ 	[사원 정보]
+ 	[사원 정보]
+ 	[사원 정보] 	
+ 	
+ 	
