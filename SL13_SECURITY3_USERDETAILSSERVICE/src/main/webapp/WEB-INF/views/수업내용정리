@@ -1,0 +1,14 @@
+[수업 내용 정리]
+
+Spring Security
+
+★★★★★★★SL12_SECURITY3_USERDETAILSSERVICE★★★★★★★
+인증받은 사용자 정보 + username + 권한 + 저장하고 정보
+AuthVO
+UserDetail대신 CustomerUser를 만들어서 UserDetailsService를 상속받아서 CustomUserDetailsService만든 거
+
+
+
+Spring RESTful 11/27 수
+Spring WebSocket 11/28 목
+Spring Intercepter를 활용한 로그인처리(11/29 금)

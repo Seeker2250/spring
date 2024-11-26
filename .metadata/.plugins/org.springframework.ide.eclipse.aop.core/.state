@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aop-reference-model>
 <aop-project name="SL12_SECURITY"/>
+<aop-project name="SL11_MYBATIS"/>
+<aop-project name="SL10_TILES2"/>
 </aop-reference-model>

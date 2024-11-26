@@ -1,12 +1,119 @@
 [수업 내용 정리]
 
-p505 Spring Transaction
+Spring Security
 
-SL10_TILES2
-
-MyBatis에서 $줄 때 주의할 것
-WHERE ${param1} LIKE '%${param2}%'
-
-
-Spring Security 11/26에~
 SL12_SECURITY
+
+pom.xml에서
+<dependency>
+     <groupId>org.springframework.security</groupId>
+     <artifactId>spring-security-web</artifactId>
+     <version>${org.springframework-version}</version>
+  </dependency>
+
+  <dependency>
+     <groupId>org.springframework.security</groupId>
+     <artifactId>spring-security-config</artifactId>
+     <version>${org.springframework-version}</version>
+  </dependency>
+
+  <dependency>
+     <groupId>org.springframework.security</groupId>
+     <artifactId>spring-security-core</artifactId>
+     <version>${org.springframework-version}</version>
+  </dependency>
+
+  <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-taglibs -->
+  <dependency>
+     <groupId>org.springframework.security</groupId>
+     <artifactId>spring-security-taglibs</artifactId>
+     <version>${org.springframework-version}</version>
+  </dependency>
+  
+security-context.xml에 자동으로 이거 만들어짐  
+xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd
+  http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+근데 이거 4.2로 되어있으면 오류 나
+
+authentication-manager 중요
+
+
+classpath:/라고 해두면 resources 밑에 있을 때 바로 찾아져
+pdf 662 참고
+
+web.xml에 filter 추가(spring security도 내부적으로는 filter 사용하고 있는거야)
+
+ 시큐리티가 필요한 URL 설계
+   ㄱ. 게시판 글 쓰기 - 인증(로그인) O
+       작성자 == 로그인한 계정(ID)
+   ㄴ. 게시판 수정/삭제 - 작성자 확인, 관리자 권한 삭제는 가능
+   ㄷ. 그 외의 요청들은 인증받지않아도 모든 사용자가 사용 가능.
+
+
+보안 필터 체인 X  pdf 684검색
+ security="none" 속성(권한 확인 안해)
+ 
+ 
+<security:intercept-url pattern="/customer/noticeReg.htm" access="isAuthenticated()"/>
+인증된 사용자인지 확인
+
+<security:intercept-url pattern="/customer/noticeDel.htm" access="hasRole('ROLE_ADMIN')"/>
+관리자만 삭제할 수 있다
+
+<security:intercept-url pattern="/**" access="permitAll" />
+그 외에는 모든 이들에게 허용
+
+
+ (암기)      시큐리티 내부 구조(개요)
+
+(1)  AuthenticationManager(인증관리자) - 가장 중요한 역할.
+                                      인증을 담당하는 존재
+                                      인터페이스
+                                      인증을 다양한 방식으로 인증 처리를 할 수 있도록 설계됨.
+                                      (책임자 역할)
+                                      
+(2)  ProviderManager(제공관리자) - 인증 처리를 AuthenticationProvider 객체를 이용해서 인증처리를 위임하는 역할, 인터페이스
+
+(3)  AuthenticationProvider(인증제공자) - 실제 인증 처리를 하는 역할(실무자)
+★★★★★★★(4)  UserDetailsService(사용자상세서비스) - 인증된 실제 사용자의 정보 + 권한 정보를 처리해서 반환하는 객체. 인터페이스★★★★★★★★   
+(3) + (4) 직접 구현할 수 있다. 근데 (4)를 통해 구현하는 게 훨씬 많이 쓰여    
+
+
+
+authentication-provider에서 user-service로 주는 건 in memory 방식이기 때문에 실제 DB에 들어있는 유저 정보와 무관함
+
+jsp에서 spring security 써먹으려면
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>있어야 해
+근데 이게 되려면 pom.xml에 spring-security-taglibs가 있어야 해
+/login으로 일어나고 csrf토큰도 생겨
+servlet-context.xml에 noticeReg.htm요청 일어나면 isAuthenticated()을 받고 했는지 체크
+login안해서 filter가 걸러내서 알아서 Spring security가 제공하는 로그인 페이지로 이동시킨 것
+
+Spring security 5.x부터는 PasswordEncoder를 이용해서 비밀번호 처리해야만 해
+password="{noop}1234" 이런식으로 {noop}을 넣으면 괜찮아져
+
+
+security-context.xml에서
+<security:form-login login-page="/joinus/login.htm"/>
+이렇게 하면 기본 페이지가 아닌 우리가 원하던 로그인 페이지로 가 url은 controller에 있던 거 걍 쓴거야  
+
+
+principal는 인증받은 정보를 가지고 있는 spring security에 있는 기본 객체
+
+login.jsp에서
+<form action="/login" method="post"> 잡아두기
+post 요청은 무조건 csrf토큰도 잡아놔
+
+security-context에서 default-target-url="/index.htm" 이런 거로 기본 url mapping 가능
+
+access-denied-handler를 ref로 우리가 만든 class로 보낼 수도 있엉
+
+SL12_SECURITY_JDBC
+SL12_SECURITY_USERDETAILSSERVICE
+
+
+
+
+Spring RESTful 11/27 수
+Spring WebSocket 11/28 목
+Spring Intercepter를 활용한 로그인처리(11/29 금)

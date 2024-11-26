@@ -1,0 +1,24 @@
+[수업 내용 정리]
+
+Spring Security
+
+★★★★★★★SL12_SECURITY_JDBC★★★★★★★
+PDF 685검색
+   
+security:jdbc-user-service
+users-by-username-query
+authorities-by-username-query
+security:password-encoder
+
+
+
+
+
+SL12_SECURITY_USERDETAILSSERVICE
+
+
+
+
+Spring RESTful 11/27 수
+Spring WebSocket 11/28 목
+Spring Intercepter를 활용한 로그인처리(11/29 금)
